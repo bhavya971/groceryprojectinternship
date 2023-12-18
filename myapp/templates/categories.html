@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: antiquewhite;
+    }
+</style>
+<body>
+    <marquee><h1 style="color: palevioletred;">Welcome to Grocery Management System</h1></marquee>
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="https://i.pinimg.com/originals/b6/80/a6/b680a65ee456ba9299a356a2a0605392.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://dealroup.com/wp-content/uploads/2020/05/Grocery-Offers.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://i.pinimg.com/736x/ec/50/12/ec5012ec10f64c481a4f1355fe8c20e4.jpg" alt="Third slide">
+            </div>
+        </div>
+    </div>
+
+    <center><h1>Products By Category</h1></center>
+
+    <div class="row"><br>
+        {% for i in c %}
+            <div class="col-md-4"> <!-- Use col-md-4 for three cards in a row on medium and larger screens -->
+                <div class="card">
+                    <a href="{% url 'myapp:products' i.id i.slug %}"><br>
+                        <img class="card-img-top" src="{{ i.img.url }}" alt="{{ i.title }}"><br>
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.title }}</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock %}
